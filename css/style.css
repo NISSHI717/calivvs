@@ -1,0 +1,1083 @@
+/* ==========================================================
+   CALIVVS - California Burgers
+   Main style sheet (shared by every page)
+
+   Colour palette (warm, minimal, comforting)
+   #FFF1D0  cream       - page background, light text on dark
+   #F6E7C1  sand        - banners, alternate sections, hover
+   #DCC48E  wheat       - borders, highlights, light buttons
+   #B8B08D  sage        - secondary accent (badges, quote bar)
+   #4A3F35  cocoa       - text, dark buttons, header bar, footer
+
+   Supporting tints made from the palette
+   #FFFAEE  card surface (lighter cream)
+   #6B5E4F  muted text (captions, calories)
+   #2F2822  dark cocoa (button hover)
+
+   Fonts: Georgia (headings) and Segoe UI / Verdana (body text)
+   ========================================================== */
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #FFF1D0;
+  color: #4A3F35;
+  font-family: "Segoe UI", Tahoma, Verdana, Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 0;
+  color: #4A3F35;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a:link,
+a:visited {
+  color: #4A3F35;
+}
+
+a:hover {
+  color: #6B5E4F;
+}
+
+a:focus {
+  outline: 3px solid #B8B08D;
+  outline-offset: 2px;
+}
+
+.wrap {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Skip link: hidden until it receives keyboard focus */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  z-index: 100;
+  background-color: #4A3F35;
+  color: #FFF1D0;
+  padding: 10px 16px;
+  font-weight: bold;
+}
+
+.skip:focus {
+  left: 10px;
+}
+
+/* ---------- Top information bar ---------- */
+.topbar {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+  text-align: center;
+  font-size: 0.88em;
+  padding: 6px 20px;
+}
+
+.topbar p {
+  margin: 0;
+}
+
+.topbar strong {
+  color: #DCC48E;
+}
+
+/* ---------- Header and navigation ---------- */
+.site-header {
+  background-color: #FFF1D0;
+  border-bottom: 1px solid #DCC48E;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.logo-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.9em;
+  font-weight: bold;
+  letter-spacing: 5px;
+  color: #4A3F35;
+}
+
+.logo-tag {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #6B5E4F;
+  margin-top: 6px;
+}
+
+.main-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.main-nav a {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.main-nav a:link,
+.main-nav a:visited {
+  color: #4A3F35;
+}
+
+.main-nav a:hover {
+  background-color: #F6E7C1;
+  color: #4A3F35;
+}
+
+.main-nav a.current {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+}
+
+/* Thin striped band - a quiet nod to a California burger-stand awning */
+.awning {
+  height: 8px;
+  background-color: #DCC48E;
+  background-image: repeating-linear-gradient(90deg, #DCC48E 0, #DCC48E 24px, #F6E7C1 24px, #F6E7C1 48px);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-dark,
+.btn-dark:link,
+.btn-dark:visited {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+}
+
+.btn-dark:hover {
+  background-color: #2F2822;
+  color: #FFF1D0;
+}
+
+.btn-light,
+.btn-light:link,
+.btn-light:visited {
+  background-color: #DCC48E;
+  color: #4A3F35;
+}
+
+.btn-light:hover {
+  background-color: #F6E7C1;
+  color: #4A3F35;
+}
+
+.btn-outline,
+.btn-outline:link,
+.btn-outline:visited {
+  border-color: #4A3F35;
+  color: #4A3F35;
+}
+
+.btn-outline:hover {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  border-color: #DCC48E;
+  color: #4A3F35;
+}
+
+.btn-ghost:hover {
+  background-color: #F6E7C1;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+/* ---------- Home page hero ---------- */
+/* A soft wheat-coloured "sun" sits behind the photo */
+.hero {
+  background-color: #F6E7C1;
+  padding-top: 50px;
+  padding-bottom: 60px;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2.4em;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 1.12em;
+  max-width: 32em;
+}
+
+.eyebrow {
+  display: inline-block;
+  background-color: #FFF1D0;
+  border: 1px solid #DCC48E;
+  color: #4A3F35;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.78em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.hero-facts {
+  list-style-type: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-facts li {
+  background-color: #FFF1D0;
+  border: 1px solid #DCC48E;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.88em;
+}
+
+.hero-photo {
+  margin: 0;
+}
+
+.hero-photo img {
+  border: 8px solid #FFFAEE;
+  border-radius: 28px;
+  box-shadow: 0 16px 36px rgba(74, 63, 53, 0.18);
+}
+
+/* ---------- Inner page banner ---------- */
+.page-banner {
+  background-color: #F6E7C1;
+  border-bottom: 1px solid #DCC48E;
+  padding-top: 44px;
+  padding-bottom: 44px;
+  text-align: center;
+}
+
+.page-banner h1 {
+  font-size: 2.3em;
+  margin-bottom: 8px;
+}
+
+.page-banner p {
+  margin: 0 auto;
+  max-width: 40em;
+  font-size: 1.08em;
+  color: #6B5E4F;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.section-alt {
+  background-color: #F6E7C1;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.section-title h2 {
+  margin-bottom: 8px;
+}
+
+.section-title p {
+  max-width: 40em;
+  margin: 0 auto;
+  color: #6B5E4F;
+}
+
+.center {
+  text-align: center;
+}
+
+.more-link {
+  font-weight: bold;
+}
+
+/* ---------- Cards (menu items, offers) ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(74, 63, 53, 0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(74, 63, 53, 0.14);
+}
+
+.card img {
+  width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 18px 20px 20px;
+}
+
+.card h3 {
+  margin-bottom: 6px;
+}
+
+.card p {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.card .price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 12px;
+  border-top: 1px dashed #DCC48E;
+}
+
+.price {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  color: #4A3F35;
+}
+
+.cal {
+  font-size: 0.85em;
+  color: #6B5E4F;
+}
+
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: #B8B08D;
+  color: #4A3F35;
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.badge-tan {
+  background-color: #DCC48E;
+}
+
+/* ---------- Home: feature boxes ---------- */
+.features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.feature {
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+  border-radius: 20px;
+  padding: 26px 20px;
+  text-align: center;
+}
+
+.feature h3 {
+  margin: 14px 0 6px;
+}
+
+.feature p {
+  margin: 0;
+  color: #6B5E4F;
+}
+
+.num {
+  display: inline-block;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  border-radius: 50%;
+  background-color: #DCC48E;
+  color: #4A3F35;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+/* ---------- Promotion band ---------- */
+.promo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+  background-color: #4A3F35;
+  color: #FFF1D0;
+  border-radius: 28px;
+  padding: 34px;
+}
+
+.promo h2 {
+  color: #DCC48E;
+  margin-bottom: 8px;
+}
+
+.promo p {
+  margin: 0;
+}
+
+.promo .big {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 3em;
+  line-height: 1;
+  color: #DCC48E;
+}
+
+/* ---------- Two-column content ---------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.photo {
+  margin: 0;
+}
+
+.photo img {
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(74, 63, 53, 0.12);
+}
+
+figcaption {
+  margin-top: 10px;
+  font-size: 0.9em;
+  font-style: italic;
+  color: #6B5E4F;
+}
+
+.motto {
+  margin: 30px 0 0;
+  padding: 20px 24px;
+  background-color: #FFFAEE;
+  border-left: 5px solid #B8B08D;
+  border-radius: 0 20px 20px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25em;
+  font-style: italic;
+}
+
+.motto p {
+  margin: 0;
+}
+
+.motto cite {
+  display: block;
+  margin-top: 8px;
+  font-family: "Segoe UI", Tahoma, Verdana, Arial, sans-serif;
+  font-size: 0.72em;
+  font-style: normal;
+  color: #6B5E4F;
+}
+
+.checks {
+  list-style-image: url(../images/bullet.png);
+}
+
+.checks li,
+.steps li {
+  margin-bottom: 10px;
+}
+
+/* ---------- Menu page ---------- */
+.jump-nav {
+  background-color: #FFF1D0;
+  border-bottom: 1px solid #DCC48E;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.jump-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.jump-nav a {
+  display: block;
+  padding: 6px 18px;
+  border: 1px solid #DCC48E;
+  border-radius: 999px;
+  background-color: #FFFAEE;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.jump-nav a:hover {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+}
+
+.menu-heading {
+  display: inline-block;
+  border-bottom: 3px solid #DCC48E;
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+}
+
+.data-table caption {
+  font-weight: bold;
+  padding: 10px 0;
+  text-align: left;
+  color: #6B5E4F;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #F6E7C1;
+}
+
+.data-table thead th {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: #FFF1D0;
+}
+
+.data-table tbody tr:hover {
+  background-color: #F6E7C1;
+}
+
+.data-table .amount {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Expandable boxes (off-menu items, FAQ) */
+details {
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+details p {
+  margin-bottom: 0;
+  color: #6B5E4F;
+}
+
+.note {
+  margin-top: 24px;
+  padding: 14px 18px;
+  background-color: #FFFAEE;
+  border: 1px dashed #B8B08D;
+  border-radius: 12px;
+  font-size: 0.9em;
+  color: #6B5E4F;
+}
+
+/* ---------- Offers page ---------- */
+.offer-value {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 1.6em;
+  margin-bottom: 8px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.service {
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+  border-top: 5px solid #B8B08D;
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.service p {
+  margin-bottom: 0;
+  color: #6B5E4F;
+}
+
+/* ---------- Contact page ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.info-card,
+.form-card {
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+address {
+  font-style: normal;
+  margin-bottom: 16px;
+}
+
+.contact-list {
+  list-style-type: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.contact-list li {
+  margin-bottom: 8px;
+}
+
+.map-link img {
+  border-radius: 14px;
+  border: 2px solid #DCC48E;
+  transition: border-color 0.2s;
+}
+
+.map-link:hover img {
+  border-color: #4A3F35;
+}
+
+/* Form */
+fieldset {
+  border: 1px solid #DCC48E;
+  border-radius: 14px;
+  padding: 16px 18px 4px;
+  margin: 0 0 20px;
+}
+
+legend {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  padding: 0 8px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 16px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row label,
+.group-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #DCC48E;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  color: #4A3F35;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.field:focus {
+  border-color: #4A3F35;
+  outline: 3px solid #F6E7C1;
+}
+
+.choices {
+  margin-top: 0;
+}
+
+.choices label,
+.form-row .inline-label {
+  display: inline;
+  font-weight: normal;
+  margin-right: 14px;
+}
+
+.req {
+  font-weight: bold;
+}
+
+.hint {
+  font-size: 0.85em;
+  color: #6B5E4F;
+  margin-top: 0;
+}
+
+/* Thank-you page */
+.thanks-box {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: #FFFAEE;
+  border: 1px solid #DCC48E;
+  border-radius: 28px;
+  padding: 44px 30px;
+  text-align: center;
+}
+
+.thanks-box .num {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 2.2em;
+  background-color: #B8B08D;
+}
+
+.thanks-box .btn-row {
+  justify-content: center;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background-color: #4A3F35;
+  color: #F6E7C1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  padding-top: 44px;
+  padding-bottom: 30px;
+}
+
+.site-footer h2 {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #DCC48E;
+  margin-bottom: 12px;
+}
+
+.site-footer .logo-mark {
+  font-size: 1.5em;
+  color: #FFF1D0;
+}
+
+.site-footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer li {
+  margin-bottom: 6px;
+}
+
+.site-footer a:link,
+.site-footer a:visited {
+  color: #FFF1D0;
+}
+
+.site-footer a:hover {
+  color: #DCC48E;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 241, 208, 0.2);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 0.85em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* ==========================================================
+   Responsive layout (mobile first)
+   ========================================================== */
+@media (min-width: 600px) {
+  .card-grid,
+  .features,
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-grid .full {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+  }
+
+  .hero-inner,
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero {
+    background-image: radial-gradient(circle at 78% 50%, #DCC48E 0, #DCC48E 210px, #F6E7C1 211px);
+  }
+
+  .hero h1 {
+    font-size: 3em;
+  }
+
+  .page-banner h1 {
+    font-size: 2.8em;
+  }
+
+  .promo {
+    grid-template-columns: 2fr 1fr;
+    padding: 44px;
+  }
+
+  .promo .actions {
+    text-align: center;
+  }
+
+  .promo .btn-row {
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1.4fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-grid.four {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .features {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 3.4em;
+  }
+}
+
+/* ==========================================================
+   Final project additions: live data, app link
+   ========================================================== */
+
+/* "Get the app" link in the navigation */
+.main-nav a.nav-app {
+  border: 1px solid #4A3F35;
+}
+
+.main-nav a.nav-app:hover {
+  background-color: #4A3F35;
+  color: #FFF1D0;
+}
+
+/* Shows whether the menu came from Google Sheets or the saved copy */
+.data-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px auto 0;
+  padding: 6px 14px;
+  border: 1px solid #DCC48E;
+  border-radius: 999px;
+  background-color: #FFFAEE;
+  font-size: 0.85em;
+  color: #6B5E4F;
+}
+
+.data-status .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #DCC48E;
+}
+
+.data-status.live .dot {
+  background-color: #6E8B5A;
+}
+
+.jump-nav .data-status,
+.section-title + .card-grid + .data-status {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+}
+
+.section .wrap > .data-status {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* Items switched off in the sheet (available = FALSE) */
+.card.sold-out img {
+  opacity: 0.45;
+}
+
+.card.sold-out .price {
+  color: #6B5E4F;
+  font-size: 1em;
+}
+
+.data-table tr.sold-out th,
+.data-table tr.sold-out td {
+  color: #6B5E4F;
+  text-decoration: line-through;
+}
+
+.data-table td {
+  color: #6B5E4F;
+}
+
+/* App preview image on the home page */
+.app-figure img {
+  max-width: 340px;
+  margin: 0 auto;
+  box-shadow: none;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CALIVVS App</title>
+  <meta name="description" content="Order CALIVVS burgers, fries and shakes ahead from your phone.">
+  <meta name="theme-color" content="#4A3F35">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CALIVVS">
+  <link rel="stylesheet" href="app.css">
+  <script src="../data/menu-backup.js" defer></script>
+  <script src="../js/calivvs-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="phone">
+    <!-- Top bar -->
+    <header class="appbar">
+      <div>
+        <p class="brand">CALIVVS</p>
+        <p class="open-status" id="open-status">Checking hours&hellip;</p>
+      </div>
+      <button class="install-btn" id="install-btn" type="button" hidden>Install</button>
+    </header>
+
+    <!-- Screens (only one is visible at a time) -->
+    <main class="screens">
+      <!-- HOME -->
+      <section class="screen" id="screen-home" data-screen="home">
+        <h1 class="greeting" id="greeting">Hello!</h1>
+        <p class="sub">What are you craving today?</p>
+        <div class="hero-card">
+          <img src="../images/hero-burger.svg" alt="Double Wave burger with fries and a shake" width="1200" height="900">
+          <div class="hero-text">
+            <p class="tag">Order ahead</p>
+            <p class="hero-title">Skip the line, pick up in about 7 minutes</p>
+            <button class="btn btn-dark" type="button" data-go="menu">Start an order</button>
+          </div>
+        </div>
+        <h2 class="section-h">Today's deals</h2>
+        <div class="offer-strip" id="home-offers"></div>
+        <h2 class="section-h">Popular</h2>
+        <div class="item-list" id="home-popular"></div>
+      </section>
+
+      <!-- MENU -->
+      <section class="screen" id="screen-menu" data-screen="menu" hidden>
+        <h1 class="screen-title">Menu</h1>
+        <label class="search">
+          <span class="visually-hidden">Search the menu</span>
+          <input type="search" id="search" placeholder="Search burgers, fries, shakes&hellip;" autocomplete="off">
+        </label>
+        <div class="chips" id="chips" role="tablist" aria-label="Menu categories"></div>
+        <div class="item-list" id="menu-list"></div>
+        <p class="empty" id="menu-empty" hidden>No items match your search.</p>
+      </section>
+
+      <!-- ORDER -->
+      <section class="screen" id="screen-order" data-screen="order" hidden>
+        <h1 class="screen-title">Your order</h1>
+        <div id="cart-empty" class="empty-state">
+          <img src="../images/combo.svg" alt="" width="800" height="600">
+          <p><strong>Your order is empty</strong></p>
+          <p class="sub">Add something tasty from the menu.</p>
+          <button class="btn btn-dark" type="button" data-go="menu">Browse the menu</button>
+        </div>
+        <form id="order-form" hidden>
+          <div class="cart" id="cart-list"></div>
+
+          <fieldset class="panel">
+            <legend>How do you want it?</legend>
+            <div class="segmented">
+              <input type="radio" name="type" id="type-pickup" value="Pickup" checked>
+              <label for="type-pickup">Pickup</label>
+              <input type="radio" name="type" id="type-dine" value="Dine-in">
+              <label for="type-dine">Dine-in</label>
+            </div>
+            <label class="field-label" for="pickup-time">Ready time</label>
+            <select id="pickup-time" class="field">
+              <option value="ASAP">As soon as possible (~7 min)</option>
+              <option value="15">In 15 minutes</option>
+              <option value="30">In 30 minutes</option>
+              <option value="60">In 1 hour</option>
+            </select>
+            <label class="field-label" for="customer-name">Name for the order</label>
+            <input id="customer-name" class="field" type="text" required maxlength="40" autocomplete="given-name" placeholder="e.g. Nahar">
+            <label class="field-label" for="order-note">Note for the kitchen (optional)</label>
+            <input id="order-note" class="field" type="text" maxlength="80" placeholder="e.g. no onions">
+            <label class="check">
+              <input type="checkbox" id="student">
+              <span>I'm a student &mdash; 15% off (show ID at pickup, Sun&ndash;Wed)</span>
+            </label>
+            <p class="hint" id="student-hint"></p>
+          </fieldset>
+
+          <div class="totals panel">
+            <p><span>Subtotal</span><span id="t-sub">0 SAR</span></p>
+            <p id="t-disc-row" hidden><span>Student discount</span><span id="t-disc">&minus;0 SAR</span></p>
+            <p class="grand"><span>Total <small>(VAT incl.)</small></span><span id="t-total">0 SAR</span></p>
+          </div>
+          <button class="btn btn-dark btn-block" type="submit" id="place-btn">Place order</button>
+          <button class="btn btn-ghost btn-block" type="button" id="clear-btn">Clear order</button>
+        </form>
+      </section>
+
+      <!-- CONFIRMATION -->
+      <section class="screen" id="screen-done" data-screen="done" hidden>
+        <div class="done">
+          <div class="tick" aria-hidden="true">&#10003;</div>
+          <h1 class="screen-title">Order placed!</h1>
+          <p class="order-no" id="done-number"></p>
+          <p id="done-text"></p>
+          <div class="panel" id="done-items"></div>
+          <p class="hint">Demo app: orders are saved on this phone and shown under Info &rarr; Recent orders.</p>
+          <button class="btn btn-dark btn-block" type="button" data-go="home">Back to home</button>
+        </div>
+      </section>
+
+      <!-- OFFERS -->
+      <section class="screen" id="screen-offers" data-screen="offers" hidden>
+        <h1 class="screen-title">Offers</h1>
+        <div class="offer-list" id="offer-list"></div>
+      </section>
+
+      <!-- INFO -->
+      <section class="screen" id="screen-info" data-screen="info" hidden>
+        <h1 class="screen-title">Visit us</h1>
+        <div class="panel">
+          <p class="big-status" id="info-status"></p>
+          <p>Prince Sultan Road, Al Zahra District, Jeddah</p>
+          <div class="action-row">
+            <a class="action" href="tel:+966120000000">Call</a>
+            <a class="action" href="https://www.google.com/maps/search/?api=1&amp;query=Prince+Sultan+Road+Al+Zahra+Jeddah" target="_blank" rel="noopener">Directions</a>
+            <a class="action" href="mailto:hello@calivvs.sa">Email</a>
+          </div>
+        </div>
+        <h2 class="section-h">Opening hours</h2>
+        <div class="panel hours" id="hours"></div>
+        <h2 class="section-h">Recent orders</h2>
+        <div class="panel" id="history"></div>
+        <h2 class="section-h">About this app</h2>
+        <div class="panel">
+          <p class="data-line" id="data-line">Loading menu&hellip;</p>
+          <p><a href="../index.html">Open the CALIVVS website</a></p>
+          <p class="hint">A fictional restaurant created for a Web &amp; Mobile App Development group project.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Item details (bottom sheet) -->
+    <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>
+      <img id="sheet-img" src="../images/combo.svg" alt="" width="800" height="600">
+      <div class="sheet-body">
+        <h2 id="sheet-name"></h2>
+        <p class="sub" id="sheet-desc"></p>
+        <p class="meta" id="sheet-meta"></p>
+        <div class="stepper big">
+          <button type="button" id="sheet-minus" aria-label="Fewer">&minus;</button>
+          <span id="sheet-qty">1</span>
+          <button type="button" id="sheet-plus" aria-label="More">+</button>
+        </div>
+        <button class="btn btn-dark btn-block" type="button" id="sheet-add">Add to order</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Bottom tab bar -->
+    <nav class="tabbar" aria-label="App sections">
+      <a href="#home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+      <a href="#menu" data-tab="menu"><svg viewBox="0 0 24 24"><path d="M4 10c0-4 3.6-6 8-6s8 2 8 6zM3 12h18v2H3zM4 16h16a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/></svg><span>Menu</span></a>
+      <a href="#order" data-tab="order"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7zM9 7a3 3 0 0 1 6 0" fill="none" stroke-width="2"/></svg><span>Order</span><b class="count" id="tab-count" hidden>0</b></a>
+      <a href="#offers" data-tab="offers"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8zm4-5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg><span>Offers</span></a>
+      <a href="#info" data-tab="info"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4.5A2.5 2.5 0 1 0 12 11.5 2.5 2.5 0 0 0 12 6.5z"/></svg><span>Info</span></a>
+    </nav>
+  </div>
+</body>
+</html>

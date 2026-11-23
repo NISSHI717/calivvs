@@ -1,0 +1,70 @@
+/* ==========================================================
+   CALIVVS - Print style sheet
+   Used only when a page is printed (for example the menu).
+   ========================================================== */
+body {
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12pt;
+}
+
+/* Hide content that is not useful on paper */
+.skip,
+.topbar,
+.main-nav,
+.awning,
+.btn-row,
+.jump-nav,
+.hero-photo,
+.card img,
+.map-link,
+form,
+.footer-grid {
+  display: none;
+}
+
+.hero,
+.page-banner,
+.promo {
+  background-color: #FFFFFF;
+  background-image: none;
+  color: #000000;
+  box-shadow: none;
+  padding: 0;
+}
+
+.hero h1,
+.page-banner h1,
+.promo h2,
+.promo .big,
+.logo-mark {
+  color: #000000;
+  text-shadow: none;
+}
+
+a:link,
+a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+
+.card,
+.feature,
+.service,
+.info-card,
+details {
+  box-shadow: none;
+  border: 1pt solid #999999;
+  page-break-inside: avoid;
+}
+
+.data-table thead th {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-bottom: 2pt solid #000000;
+}
+
+.menu-section {
+  page-break-inside: avoid;
+}
